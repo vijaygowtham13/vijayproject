@@ -1,0 +1,43 @@
+<svg width="70" height="90" viewBox="0 0 70 90" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- First Polygon with appear-up animation -->
+    <polygon id="poly1" points="35,10 65,25 35,40 5,25" stroke="#A020F0" stroke-width="3" fill="none">
+      <!-- Animate opacity -->
+      <animate 
+        attributeName="opacity" 
+        values="0;1;1;0" 
+        keyTimes="0;0.2;0.8;1" 
+        dur="3s"
+        repeatCount="indefinite"/>
+      <!-- Animate upward movement -->
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 10;0 0;0 0;0 10"
+        keyTimes="0;0.2;0.8;1"
+        dur="3s"
+        repeatCount="indefinite"/>
+    </polygon>
+
+    <!-- Second Polygon with delayed appear-up animation -->
+    <polygon id="poly2" points="35,30 65,45 35,60 5,45" stroke="white" stroke-width="3" fill="none">
+      <!-- Animate opacity -->
+      <animate 
+        attributeName="opacity" 
+        values="0;1;1;0" 
+        keyTimes="0;0.2;0.8;1" 
+        dur="3s"
+        repeatCount="indefinite"
+        begin="1.2s"/>
+      <!-- Animate upward movement -->
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 10;0 0;0 0;0 10"
+        keyTimes="0;0.2;0.8;1"
+        dur="3s"
+        repeatCount="indefinite"
+        begin="1.2s"/>
+    </polygon>
+  </g>
+</svg>

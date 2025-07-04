@@ -1,0 +1,34 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Eye outline (white) -->
+  <path id="outline"
+    d="M10 40 Q40 10 70 40 Q40 70 10 40 Z"
+    stroke="white"
+    stroke-width="3"
+    fill="none">
+    <!-- Animate opacity to simulate blink -->
+    <animate
+      attributeName="opacity"
+      values="1;0;1"
+      dur="3s"
+      repeatCount="indefinite"
+      keyTimes="0;0.5;1"/>
+  </path>
+
+  <!-- Eyelid shape (purple) -->
+  <path id="eyelid"
+    stroke="#A020F0"
+    stroke-width="3"
+    fill="black">
+    <!-- Animate the eyelid path -->
+    <animate
+      attributeName="d"
+      dur="3s"
+      repeatCount="indefinite"
+      values="
+        M20 40 Q40 40 60 40 Q40 40 20 40 Z;
+        M20 40 Q40 20 60 40 Q40 60 20 40 Z;
+        M20 40 Q40 20 60 40 Q40 60 20 40 Z;
+        M20 40 Q40 40 60 40 Q40 40 20 40 Z"
+      keyTimes="0;0.25;0.75;1"/>
+  </path>
+</svg>

@@ -21,11 +21,11 @@ export default function Faqs() {
   };
 
   return (
-    <section className="bg-black text-white py-16 px-4">
+    <section className="bg-black text-white py-10 px-4">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-center text-2xl md:text-3xl font-semibold mb-10">
-          FAQs
-        </h2>
+         <h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
+       FAQs
+      </h2>
 
         <div className="space-y-3">
           {faqItems.map((question, index) => (

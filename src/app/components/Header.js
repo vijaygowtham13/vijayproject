@@ -26,10 +26,10 @@ export default function HeroSection() {
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden font-sans">
       {/* LEFT & RIGHT SHADOW OVERLAYS */}
      {/* LEFT SHADOW */}
-<div className="absolute inset-y-0 left-0 w-62 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+<div className="absolute inset-y-0 left-0 w-42 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
 
 {/* RIGHT SHADOW */}
-<div className="absolute inset-y-0 right-0 w-62 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
+<div className="absolute inset-y-0 right-0 w-42 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
 
 
       {/* Header */}
@@ -119,7 +119,9 @@ export default function HeroSection() {
 
       {/* Our Results */}
       <div className="w-full bg-black py-10 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden mt-10">
-        <p className="text-2xl font-semibold text-white text-center">Our Results</p>
+<h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
+ Our Results
+</h2>
 
         <div className="relative w-full overflow-hidden">
           <div
@@ -154,7 +156,7 @@ export default function HeroSection() {
         }
         @keyframes scrollLogos {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-${logos.length * 150}px); }
+          100% { transform: translateX(-${logos.length * 350}px); }
         }
       `}</style>
       <style jsx global>{`

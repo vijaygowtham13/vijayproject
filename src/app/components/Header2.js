@@ -42,9 +42,9 @@ export default function TestimonialsSection() {
 
   return (
     <div className="bg-black text-white py-0 px-4 md:px-16">
-      <h2 className="text-3xl md:text-4xl font-semibold text-center mb-16">
-        What our clients say
-      </h2>
+     <h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
+  What Our Clients Say?
+</h2>
 
       <style jsx>{`
         @keyframes scroll-down {

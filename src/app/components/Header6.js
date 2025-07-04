@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 export default function CallToActionWithFooter() {
   return (
-    <div className="bg-black text-white flex flex-col min-h-screen justify-between">
+    <div className="bg-black text-white flex flex-col min-h-screen justify-between font-inter">
       {/* Main CTA Block */}
-      <main className="flex-grow px-4 py-24">
+      <main className="flex-grow px-4 py-1">
         <div className="max-w-4xl mx-auto text-center relative rounded-2xl p-10 md:p-16 bg-[#130017] overflow-hidden shadow-2xl border border-white/5">
           {/* Radial blurred background glow */}
           <div className="absolute inset-0 z-0">
