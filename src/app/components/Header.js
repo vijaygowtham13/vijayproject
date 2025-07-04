@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 
 export default function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const scrollRef = useRef(null);
 
   const results = [
     '/graph1.avif',
@@ -13,10 +14,17 @@ export default function HeroSection() {
     '/g4.avif'
   ];
 
+  const logos = [
+    'https://framerusercontent.com/images/3qQXa7B2YIx8XUMuC9l3hVB5FZ0.png',
+    'https://framerusercontent.com/images/xkislM185Ad7ztE3LPc42il6w.png',
+    'https://framerusercontent.com/images/jFxyUrjXrOWQF7xFzqGtCjTm4w.png',
+    'https://framerusercontent.com/images/CUoZkwG6PGO4Si5dcwO2vjVU.png',
+    'https://framerusercontent.com/images/aAZy7pWMbPNiWubvXUr6Il7gAQ4.png'
+  ];
+
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
-
-      {/* Header */}
+ 
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-5 py-4 border border-white/10 rounded-2xl mx-4 backdrop-blur-sm bg-white/5">
         <div className="h-7 w-auto">
           <img
@@ -56,7 +64,7 @@ export default function HeroSection() {
         )}
       </header>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <div className="relative z-10 text-center pt-[180px] px-4 md:px-0 font-sans max-w-4xl mx-auto">
         <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-fuchsia-900/30 blur-3xl rounded-full opacity-80"></div>
 
@@ -76,15 +84,40 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Our Results */}
-      <div className="w-full bg-black py-10 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden mt-20">
+      {/* Trusted By (scrolling) */}
+      <div className="w-full bg-black py-12 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden">
+        <p className="text-sm text-white/70">Trusted By</p>
+
+        <div className="relative w-full overflow-hidden">
+          <div
+            className="flex gap-16 animate-scrollLogos"
+            style={{
+              width: `${logos.length * 2 * 150}px`,
+              whiteSpace: 'nowrap'
+            }}
+            ref={scrollRef}
+          >
+            {[...logos, ...logos].map((url, i) => (
+              <img
+                key={`logo-${i}`}
+                src={url}
+                alt={`logo-${i}`}
+                className="h-10 w-[150px] object-contain flex-shrink-0 grayscale opacity-80 hover:opacity-100 transition duration-300"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Our Results (scrolling) */}
+      <div className="w-full bg-black py-10 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden mt-10">
         <p className="text-2xl font-semibold text-white text-center">Our Results</p>
 
         <div className="relative w-full overflow-hidden">
           <div
             className="flex gap-6 animate-scrollResults"
             style={{
-              width: `${results.length * 2 * 400}px`, // double the images for loop
+              width: `${results.length * 2 * 400}px`,
               whiteSpace: 'nowrap'
             }}
           >
@@ -104,20 +137,23 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Animations */}
+      {/* Keyframe Animations */}
       <style jsx>{`
         @keyframes scrollResults {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-${results.length * 400}px);
-          }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${results.length * 400}px); }
+        }
+        @keyframes scrollLogos {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${logos.length * 150}px); }
         }
       `}</style>
       <style jsx global>{`
         .animate-scrollResults {
-          animation: scrollResults 20s linear infinite;
+          animation: scrollResults 30s linear infinite;
+        }
+        .animate-scrollLogos {
+          animation: scrollLogos 30s linear infinite;
         }
       `}</style>
     </div>
