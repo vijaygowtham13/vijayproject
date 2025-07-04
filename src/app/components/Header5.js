@@ -50,7 +50,7 @@ export default function Faqs() {
               {activeIndex === index && (
                 <div className="px-4 pb-4 text-sm text-white/60 leading-relaxed">
                   {/* Replace this with your actual answer content */}
-                  This is the answer. You can replace this with your real FAQ response.
+                  
                 </div>
               )}
             </div>

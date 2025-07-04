@@ -1,36 +1,31 @@
-'use client';
+"use client";
 
-import React, { useRef, useState } from 'react';
-import { IconMenu2, IconX } from '@tabler/icons-react';
+import React, { useState } from "react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 
 export default function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const scrollRef = useRef(null);
 
   const results = [
-    { src: '/graph1.avif', width: 480, height: 200 },
-    { src: '/g2.avif', width: 300, height: 200 },
-    { src: '/g3.avif', width: 380, height: 200 },
-    { src: '/g4.avif', width: 350, height: 200 }
+    { src: "/graph1.avif", width: 480, height: 200 },
+    { src: "/g2.avif", width: 300, height: 200 },
+    { src: "/g3.avif", width: 380, height: 200 },
+    { src: "/g4.avif", width: 350, height: 200 },
   ];
 
   const logos = [
-    'https://framerusercontent.com/images/3qQXa7B2YIx8XUMuC9l3hVB5FZ0.png',
-    'https://framerusercontent.com/images/xkislM185Ad7ztE3LPc42il6w.png',
-    'https://framerusercontent.com/images/jFxyUrjXrOWQF7xFzqGtCjTm4w.png',
-    'https://framerusercontent.com/images/CUoZkwG6PGO4Si5dcwO2vjVU.png',
-    'https://framerusercontent.com/images/aAZy7pWMbPNiWubvXUr6Il7gAQ4.png'
+    "https://framerusercontent.com/images/3qQXa7B2YIx8XUMuC9l3hVB5FZ0.png",
+    "https://framerusercontent.com/images/xkislM185Ad7ztE3LPc42il6w.png",
+    "https://framerusercontent.com/images/jFxyUrjXrOWQF7xFzqGtCjTm4w.png",
+    "https://framerusercontent.com/images/CUoZkwG6PGO4Si5dcwO2vjVU.png",
+    "https://framerusercontent.com/images/aAZy7pWMbPNiWubvXUr6Il7gAQ4.png",
   ];
 
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden font-sans">
       {/* LEFT & RIGHT SHADOW OVERLAYS */}
-     {/* LEFT SHADOW */}
-<div className="absolute inset-y-0 left-0 w-42 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
-
-{/* RIGHT SHADOW */}
-<div className="absolute inset-y-0 right-0 w-42 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
-
+      <div className="absolute inset-y-0 left-0 w-42 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-42 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
 
       {/* Header */}
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-5 py-4 border border-white/10 rounded-2xl mx-4 backdrop-blur-sm bg-white/5">
@@ -101,9 +96,8 @@ export default function HeroSection() {
             className="flex gap-16 animate-scrollLogos"
             style={{
               width: `${logos.length * 2 * 150}px`,
-              whiteSpace: 'nowrap'
+              whiteSpace: "nowrap",
             }}
-            ref={scrollRef}
           >
             {[...logos, ...logos].map((url, i) => (
               <img
@@ -119,16 +113,16 @@ export default function HeroSection() {
 
       {/* Our Results */}
       <div className="w-full bg-black py-10 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden mt-10">
-<h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
- Our Results
-</h2>
+        <h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
+          Our Results
+        </h2>
 
         <div className="relative w-full overflow-hidden">
           <div
             className="flex gap-6 animate-scrollResults"
             style={{
               width: `${results.length * 2 * 420}px`,
-              whiteSpace: 'nowrap'
+              whiteSpace: "nowrap",
             }}
           >
             {[...results, ...results].map((img, i) => (
@@ -152,11 +146,11 @@ export default function HeroSection() {
       <style jsx>{`
         @keyframes scrollResults {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-${results.length * 380}px); }
+          100% { transform: translateX(-${results.reduce((sum, img) => sum + img.width + 24, 0)}px); }
         }
         @keyframes scrollLogos {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-${logos.length * 350}px); }
+          100% { transform: translateX(-${logos.length * (150 + 64)}px); }
         }
       `}</style>
       <style jsx global>{`
