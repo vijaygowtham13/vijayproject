@@ -1,146 +1,181 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState } from 'react';
-import {
-  IconSearch,
-  IconFileText,
-  IconChartBar,
-  IconEye,
-} from '@tabler/icons-react';
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const steps = [
   {
-    title: 'Identify Your Problems in Lead Generation and Sales System',
-    desc: 'Our dedicated account executive will analyse the current issues in your system.',
-    align: 'left',
-    icon: <IconSearch size={32} stroke={2} className="text-purple-500" />,
-    step: 'Step 1',
+    id: 1,
+    title: "Identify Your Problems in Lead Generation and Sales System",
+    description: `Our dedicated account executive will analyse the current issues in your system.`,
+    icon: "/icons/search.svg",
+    position: "left",
   },
   {
-    title: 'ICP and Offer Creation',
-    desc: 'We create your ICP list with a compelling offer that your prospects can’t say “NO TO”.',
-    align: 'right',
-    icon: <IconFileText size={32} stroke={2} className="text-pink-500" />,
-    step: 'Step 2',
+    id: 2,
+    title: "ICP and Offer Creation",
+    description:
+      "We create your ICP list with a compelling offer that your prospects can’t say \"NO TO\". If needed, we will revamp your current ICP and offer to ensure we have accurate data.",
+    icon: "/icons/file.svg",
+    position: "right",
   },
   {
-    title: 'Pipeline and Sales Tool Implementation',
-    desc: 'We implement and optimize the CRM and sales tools necessary for your outreach.',
-    align: 'left',
-    icon: <IconChartBar size={32} stroke={2} className="text-yellow-400" />,
-    step: 'Step 3',
+    id: 3,
+    title: "Pipeline and Sales Tool Implementation",
+    description: (
+      <>
+        <strong>Pipeline Setup:</strong> We set up your pipeline account and create a custom lead nurturing scheme.<br />
+        <strong>Sales Tools Stack:</strong> Utilizing our in-house sales tools stack, we set-up the process for the campaign.
+      </>
+    ),
+    icon: "/icons/layers.svg",
+    position: "left",
   },
   {
-    title: 'Creation of Sales Assets and Content',
-    desc: 'We build content, graphics, scripts, etc. used in outbound and inbound funnels.',
-    align: 'right',
-    icon: <IconEye size={32} stroke={2} className="text-cyan-400" />,
-    step: 'Step 4',
+    id: 4,
+    title: "Creation of Sales Assets and Content",
+    description: (
+      <>
+        <strong>Sales Assets:</strong> We create essential sales assets such as lead magnets, case studies, content, graphics, and outbound scripts.<br />
+        <strong>Inbound System:</strong> We develop engaging content that will be used across social media campaigns as part of our inbound system.<br />
+        <strong>Outbound System:</strong> We set up cold email infrastructure, warm domains, and A/B test campaigns.
+      </>
+    ),
+    icon: "/icons/eye.svg",
+    position: "right",
   },
 ];
 
-export default function HeroSteps() {
+export default function StepTimeline() {
   const containerRef = useRef(null);
   const lineRef = useRef(null);
   const [lineHeight, setLineHeight] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || !lineRef.current) return;
-
       const container = containerRef.current;
+      const line = lineRef.current;
+      if (!container || !line) return;
+
       const rect = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      const start = rect.top;
+      const totalHeight = rect.height - 350;
 
-      const startY = rect.top;
-      const endY = rect.bottom - windowHeight / 2;
-
-      if (startY < windowHeight && rect.bottom > 0) {
-        const scrollProgress = Math.min(
-          Math.max((windowHeight - startY) / (endY - startY), 0),
-          1
-        );
-
-        const containerHeight = container.offsetHeight;
-        const targetHeight = containerHeight * scrollProgress;
-
-        setLineHeight(targetHeight);
-      }
+      const fasterProgress = Math.min(Math.max((windowHeight - start) / windowHeight, 0), 1);
+      setLineHeight(fasterProgress * totalHeight);
     };
 
-    window.addEventListener('scroll', handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-black text-white py-20 relative overflow-hidden">
-      <h2 className="text-center text-4xl font-bold mb-24">How We Help You ?</h2>
+    <section
+      className="relative w-full bg-black text-white py-20 px-4 md:px-20 overflow-hidden"
+      ref={containerRef}
+    >
+      <h2 className="text-center text-3xl md:text-4xl font-semibold mb-16 text-white/90">
+        How We Help You ?
+      </h2>
 
-      {/* Center timeline line */}
-      <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 z-0">
+      <div className="relative flex justify-center">
+        {/* Scroll-animated Line - hidden on mobile */}
         <div
           ref={lineRef}
+          className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-purple-600 via-purple-700 to-purple-900 z-0"
           style={{ height: `${lineHeight}px` }}
-          className="w-full bg-gradient-to-b from-purple-500 via-fuchsia-600 to-purple-800 shadow-[0_0_20px_5px_rgba(168,85,247,0.6)] transition-all duration-100"
-        />
-      </div>
+        ></div>
 
-      {/* Steps */}
-      <div className="relative z-10 flex flex-col gap-32 max-w-5xl mx-auto px-4">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`relative flex flex-col md:flex-row ${
-              step.align === 'right' ? 'md:justify-end' : 'md:justify-start'
-            }`}
-          >
-            {/* Step Card */}
-            <div className="md:w-1/2 bg-[#111111] border border-white/10 p-6 rounded-2xl shadow-2xl backdrop-blur-sm relative z-10">
-              <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-600 to-fuchsia-600 rounded-full blur-xl opacity-30"></div>
-              <div className="mb-4">{step.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 leading-snug">
-                {step.title}
-              </h3>
-              <p className="text-white/70 text-sm">{step.desc}</p>
-            </div>
+        <div className="relative z-10 w-full max-w-5xl">
+          {steps.map((step, index) => (
+            <div
+              key={step.id}
+              className={`mb-24 relative flex flex-col md:flex-row items-center md:justify-between`}
+            >
+              {/* Step Dot - hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-20">
+                <div className="w-6 h-6 rounded-full bg-black border-2 border-purple-600 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                </div>
+              </div>
 
-            {/* Dot + Step label in center */}
-            <div className="hidden md:flex flex-col items-center absolute left-1/2 transform -translate-x-1/2 top-1">
-              <div className="w-6 h-6 bg-purple-500 rounded-full border-4 border-black shadow-md z-10"></div>
-              <div className="bg-[#111] text-white text-xs font-medium px-3 py-1 mt-2 rounded-full shadow border border-purple-700">
-                {step.step}
+              {/* Step Label */}
+              <div
+                className={`hidden md:block absolute top-0 ${
+                  step.position === "left"
+                    ? "left-[calc(50%+2.5rem)]"
+                    : "right-[calc(50%+2.5rem)]"
+                } bg-[#111] text-white text-sm px-4 py-1 rounded-full border border-white/10`}
+              >
+                Step {index + 1}
+              </div>
+
+              {/* Step Content */}
+              <div
+                className={`md:w-[48%] p-6 rounded-2xl bg-[#111] border border-white/10 shadow-md ${
+                  step.position === "left" ? "md:mr-auto" : "md:ml-auto"
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-4 md:hidden">
+                  <Image
+                    src={step.icon}
+                    alt="step icon"
+                    width={24}
+                    height={24}
+                    className="invert"
+                  />
+                  <span className="text-sm bg-[#222] px-3 py-1 rounded-full">
+                    Step {index + 1}
+                  </span>
+                </div>
+                <h3 className="text-lg md:text-xl font-semibold mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </div>
+          ))}
 
-            {/* For mobile view - stacked center */}
-            <div className="md:hidden flex flex-col items-center mt-4">
-              <div className="w-6 h-6 bg-purple-500 rounded-full border-4 border-black shadow-md"></div>
-              <div className="bg-[#111] text-white text-xs font-medium px-3 py-1 mt-2 rounded-full shadow border border-purple-700">
-                {step.step}
-              </div>
+          {/* Final Dot for Step 5 - hidden on mobile */}
+          <div className="hidden md:flex justify-center items-center mb-2">
+            <div className="w-6 h-6 rounded-full bg-black border-2 border-purple-600 flex items-center justify-center z-20">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
             </div>
           </div>
-        ))}
 
-        {/* Final Launch Section */}
-        <div className="text-center mt-16 md:mt-32 px-4">
-          <div className="bg-[#111111] border border-white/10 rounded-2xl p-10 shadow-2xl max-w-3xl mx-auto">
-            <img
-              src="/path-to-mockup-image.png"
-              alt="Launch Campaign"
-              className="mx-auto mb-6 rounded-lg shadow-lg border border-white/10"
-            />
-            <h3 className="text-2xl font-semibold mb-3">Launch The Campaign</h3>
-            <p className="text-white/70 mb-5 text-sm">
-              Once we have all the assets ready, we will launch the campaign.
-            </p>
-            <button className="bg-purple-600 hover:bg-purple-700 transition-all px-6 py-2 rounded-full font-medium text-white">
-              Apply these assets to outreach
-            </button>
+          {/* Step 5 Label */}
+          <div className="flex justify-center mb-6">
+            <span className="inline-block bg-[#111] text-white text-sm px-4 py-1 rounded-full border border-white/10">
+              Step 5
+            </span>
+          </div>
+
+          {/* Step 5 Content Box */}
+          <div className="flex justify-center">
+            <div className="bg-gradient-to-br from-[#1a011f] via-black to-black border border-white/10 p-10 rounded-2xl text-center max-w-2xl">
+              <img
+                src="/dash.avif"
+                alt="Dashboard preview"
+                className="rounded-xl mb-6 mx-auto"
+                style={{ maxHeight: 300, objectFit: "contain" }}
+              />
+              <h3 className="text-2xl font-bold text-purple-400 mb-3">
+                Launch The Campaign
+              </h3>
+              <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+                Once we have all the collaterals ready, we will launch the campaign.
+              </p>
+              <button className="bg-white text-black text-sm font-semibold px-6 py-3 rounded-xl shadow-md">
+                Apply here to work with us
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

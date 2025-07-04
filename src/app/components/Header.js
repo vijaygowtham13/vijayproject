@@ -8,10 +8,10 @@ export default function HeroSection() {
   const scrollRef = useRef(null);
 
   const results = [
-    '/graph1.avif',
-    '/g2.avif',
-    '/g3.avif',
-    '/g4.avif'
+    { src: '/graph1.avif', width: 480, height: 200 },
+    { src: '/g2.avif', width: 300, height: 200 },
+    { src: '/g3.avif', width: 380, height: 200 },
+    { src: '/g4.avif', width: 350, height: 200 }
   ];
 
   const logos = [
@@ -23,8 +23,16 @@ export default function HeroSection() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
- 
+    <div className="min-h-screen w-full bg-black text-white relative overflow-hidden font-sans">
+      {/* LEFT & RIGHT SHADOW OVERLAYS */}
+     {/* LEFT SHADOW */}
+<div className="absolute inset-y-0 left-0 w-62 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
+{/* RIGHT SHADOW */}
+<div className="absolute inset-y-0 right-0 w-62 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
+
+      {/* Header */}
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-5 py-4 border border-white/10 rounded-2xl mx-4 backdrop-blur-sm bg-white/5">
         <div className="h-7 w-auto">
           <img
@@ -65,8 +73,8 @@ export default function HeroSection() {
       </header>
 
       {/* Hero Section */}
-      <div className="relative z-10 text-center pt-[180px] px-4 md:px-0 font-sans max-w-4xl mx-auto">
-        <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-fuchsia-900/30 blur-3xl rounded-full opacity-80"></div>
+      <div className="relative z-10 text-center pt-[180px] px-4 md:px-0 max-w-4xl mx-auto">
+        <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-fuchsia-900/30 blur-3xl rounded-full opacity-90"></div>
 
         <h1 className="text-3xl md:text-5xl font-light leading-tight tracking-tight">
           We Build Multichannel Acquisition Systems<br />
@@ -84,7 +92,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Trusted By (scrolling) */}
+      {/* Trusted By */}
       <div className="w-full bg-black py-12 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden">
         <p className="text-sm text-white/70">Trusted By</p>
 
@@ -109,7 +117,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Our Results (scrolling) */}
+      {/* Our Results */}
       <div className="w-full bg-black py-10 px-4 md:px-16 flex flex-col items-center gap-6 overflow-hidden mt-10">
         <p className="text-2xl font-semibold text-white text-center">Our Results</p>
 
@@ -117,17 +125,18 @@ export default function HeroSection() {
           <div
             className="flex gap-6 animate-scrollResults"
             style={{
-              width: `${results.length * 2 * 400}px`,
+              width: `${results.length * 2 * 420}px`,
               whiteSpace: 'nowrap'
             }}
           >
-            {[...results, ...results].map((url, i) => (
+            {[...results, ...results].map((img, i) => (
               <div
                 key={`result-${i}`}
-                className="flex-shrink-0 w-[400px] h-[240px] overflow-hidden rounded-2xl"
+                className="flex-shrink-0 overflow-hidden rounded-2xl"
+                style={{ width: `${img.width}px`, height: `${img.height}px` }}
               >
                 <img
-                  src={url}
+                  src={img.src}
                   alt={`result-${i}`}
                   className="w-full h-full object-cover"
                 />
@@ -141,7 +150,7 @@ export default function HeroSection() {
       <style jsx>{`
         @keyframes scrollResults {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-${results.length * 400}px); }
+          100% { transform: translateX(-${results.length * 380}px); }
         }
         @keyframes scrollLogos {
           0% { transform: translateX(0); }
