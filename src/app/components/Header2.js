@@ -9,7 +9,7 @@ export default function TestimonialsSection() {
         title: "CEO at Hurricane HL Ltd",
       },
       {
-        text: "AcquisitionX's social media expertise helped us go viral on LinkedIn and double our inbound leads within weeks.",
+        text: "CreativeDot social media expertise helped us go viral on LinkedIn and double our inbound leads within weeks.",
         author: "Syed Sikandar",
         title: "Sales Manager",
       },

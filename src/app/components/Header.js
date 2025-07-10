@@ -30,11 +30,7 @@ export default function HeroSection() {
       {/* Header */}
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-5 py-4 border border-white/10 rounded-2xl mx-4 backdrop-blur-sm bg-white/5">
         <div className="h-7 w-auto">
-          <img
-            src="https://framerusercontent.com/images/lB9CUhTBFEirEF3dIoICRM9B598.svg"
-            alt="Logo"
-            className="h-full w-auto object-contain"
-          />
+          
         </div>
 
         <nav className="hidden md:flex gap-8 text-sm font-medium">
@@ -77,7 +73,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="mt-6 text-gray-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light">
-          AcquisitionX helps you fill your calendar with 360 degree lead gen systems while building your brand across all social media channels
+          CreativeDot helps you fill your calendar with 360 degree lead gen systems while building your brand across all social media channels
         </p>
 
         <div className="mt-10">

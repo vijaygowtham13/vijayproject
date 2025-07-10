@@ -5,7 +5,7 @@ import { IconPlus, IconMinus } from '@tabler/icons-react';
 
 export default function Faqs() {
   const faqItems = [
-    'How much does AcquisitionX charge for a multichannel campaign?',
+    'How much does CreativeDot charge for a multichannel campaign?',
     'What if I only want to focus on cold outreach?',
     'Are software costs included?',
     'How long does it take to launch a campaign?',

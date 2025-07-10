@@ -33,7 +33,7 @@ export default function CallToActionWithFooter() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 text-center py-4 text-xs text-white/60">
-        ©2025 AcquisitionX All right reserved.
+        ©2025 TERAFORMA TECHNOLOGIES PRIVATE LIMITED All right reserved.
       </footer>
     </div>
   );

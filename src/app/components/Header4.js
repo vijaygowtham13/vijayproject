@@ -164,7 +164,7 @@ export default function WhyAcquisitionX() {
     <section className="bg-black text-white py-10 font-inter">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-center text-3xl md:text-4xl font-light mb-16 text-white/90">
-       Why AcquisitionX?
+       Why CreativeDot?
       </h2>
 
         <div className="grid md:grid-cols-3 gap-12 text-center">
